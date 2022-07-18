@@ -38,6 +38,7 @@ class Board extends React.Component {
     }
 
     render() {
+        // TODO Rewrite Board to use two loops to make the squares instead of hardcoding them.
         return (
             <div>
                 <div className="board-row">
@@ -68,7 +69,8 @@ class Game extends React.Component {
             history: [
                 {
                     squares: Array(9).fill(null),
-                    lastPos: Array(2).fill(null), // [colNum, rowNum]
+                    // lastPos: [colNum, rowNum]
+                    lastPos: Array(2).fill(null),
                 },
             ],
             xIsNext: true,
@@ -99,6 +101,7 @@ class Game extends React.Component {
     }
 
     jumpTo(number) {
+        // TODO Bold the currently selected item in the move list.
         this.setState({
             xIsNext: (number % 2) === 0,
             stepNumber: number,
@@ -108,8 +111,11 @@ class Game extends React.Component {
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
+        // TODO When someone wins, highlight the three squares that caused the win.
+        // TODO When no one wins, display a message about the result being a draw.
         const winner = calculateWinner(current.squares);
 
+        // TODO Add a toggle button that lets you sort the moves in either ascending or descending order.
         const moves = history.map((value, number) => {
             const desc = number
                 ? `Go to move #${number},
